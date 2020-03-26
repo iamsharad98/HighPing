@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_over_powered"
+        icon="@drawable/tab_over_powered"
+        title="OverPowered" />
+    <tab
+        id="@+id/tab_play"
+        icon="@drawable/tab_play"
+        title="Play" />
+    <tab
+        id="@+id/tab_result"
+        icon="@drawable/tab_result"
+        title="Result" />
+</tabs>

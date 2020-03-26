@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">HighPing</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="auth_failed">Authentication is failed. Please Try Again…</string>
+    <string name="auth_success">Authentication successful.</string>
+
+
+    <!-- Database -->
+    <string name="db_users_profile">users_profile</string>
+    <string name="db_user_account_setting">user_account_setting</string>
+    <string name="db_new_room_card">new_room_card</string>
+    <string name="field_user_id">user_id</string>
+
+    <!--    new_room_card-->
+    <string name="db_field_amt_per_kill">amt_per_kill</string>
+    <string name="db_field_image_url">image_url</string>
+    <string name="db_field_match_count">match_count</string>
+    <string name="db_field_time_stamp">time_stamp</string>
+    <string name="db_field_win_prize">win_prize</string>
+    <string name="db_field_match_type">match_type</string>
+    <string name="db_field_version">version</string>
+    <string name="db_field_entry_fee">entry_fee</string>
+    <string name="db_field_map">map</string>
+    <string name="db_field_spots_left">spots_left</string>
+    <string name="db_field_card_id">card_id</string>
+    <string name="db_field_room_id">room_id</string>
+    <string name="db_field_room_password">room_password</string>
+    <string name="db_field_curr_balance">curr_balance</string>
+
+    <string name="player_error">Error initializing YouTube player: %s</string>
+    <string name="seek_to">Jump To</string>
+    <string name="seek_to_hint">Seconds</string>
+
+
+</resources>

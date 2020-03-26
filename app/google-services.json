@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1085275035387",
+    "firebase_url": "https://highping-b6420.firebaseio.com",
+    "project_id": "highping-b6420",
+    "storage_bucket": "highping-b6420.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085275035387:android:05b8d0ae03786b12c5c25e",
+        "android_client_info": {
+          "package_name": "com.bekaim.highping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085275035387-hle3do9f1c46pfdfmrrb6a5kpkcbkdce.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bekaim.highping",
+            "certificate_hash": "12d81f6d8675dfab0d1df7c62e6790a44f893c3d"
+          }
+        },
+        {
+          "client_id": "1085275035387-2u39hrpvtlgr3484nsdd4v5i5hssc8go.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiamwwAgAl3qplNB1RM72cQVJGIX2q0Wo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085275035387-2u39hrpvtlgr3484nsdd4v5i5hssc8go.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
