@@ -57,6 +57,7 @@ public class PlayFragment extends Fragment {
 
         return view;
     }
+
     private void setupRefreshLayout() {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -104,7 +105,7 @@ public class PlayFragment extends Fragment {
                             spot.setUser_id(dSnapshot.getValue(Spots.class).getUser_id());
                             spots.add(spot);
                         }
-                        playModel.setSpots_left(spots);
+                        playModel.setJoined_user(spots);
 
                         playModels.add(playModel);
                     }catch (NullPointerException e ){

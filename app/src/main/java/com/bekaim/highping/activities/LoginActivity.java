@@ -55,15 +55,17 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         setupFirebaseAuth();
 
-
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                frameProgress.setVisibility(View.VISIBLE);
+
                 if(validInfo()){
                     loginUser();
                 }else{
+                    frameProgress.setVisibility(View.GONE);
+                    Toast.makeText(mContext, "Your Input is not Valid.", Toast.LENGTH_SHORT).show();
                     Log.d("LoginAttemptFailed", "validInfo return false");
-                    return;
                 }
             }
         });

@@ -9,15 +9,27 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bekaim.highping.R;
 import com.bekaim.highping.activities.CheckRoomEligibility;
+import com.bekaim.highping.activities.RoomActivity;
 import com.bekaim.highping.models.PlayModel;
+import com.bekaim.highping.models.Spots;
+import com.bekaim.highping.models.UserProfile;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
 
 public class PlayFragmentListAdapter extends ArrayAdapter<PlayModel> {
 
@@ -86,15 +98,14 @@ public class PlayFragmentListAdapter extends ArrayAdapter<PlayModel> {
         }
 
         //Cover Image
-        Glide.with(getContext())
-                .load(mContext.getResources())
+        Glide.with(mContext)
+                .load(dataModel.getImage_url())
                 .apply(new RequestOptions()
                         .placeholder(R.drawable.pubg_sample_wallpaper)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .centerCrop()
                 )
                 .into(holder.imager_url);
-
 
         holder.match_count.setText("Match #"+dataModel.getMatch_count());
         holder.time_stamp.setText(dataModel.getTime_stamp());
@@ -104,23 +115,58 @@ public class PlayFragmentListAdapter extends ArrayAdapter<PlayModel> {
         holder.game_version.setText(dataModel.getVersion());
         holder.entry_fee.setText(dataModel.getEntry_fee());
         holder.map.setText(dataModel.getMap());
-        holder.spots_left.setText(dataModel.getSpots_left().size()+ "/100");
+        holder.spots_left.setText(dataModel.getJoined_user().size()+ "/100");
         holder.card_id = dataModel.getCard_id();
+
+//        isAlreadyJoin(dataModel);
+//        Toast.makeText(mContext, "" + dataModel.getCard_id(), Toast.LENGTH_SHORT).show();
 
         holder.join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), CheckRoomEligibility.class);
-                intent.putExtra(getContext().getString(R.string.db_field_card_id), holder.card_id);
-                intent.putExtra(getContext().getString(R.string.db_field_entry_fee) , dataModel.getEntry_fee() );
-                getContext().startActivity(intent);
+                //Toast.makeText(mContext, "" + dataModel.getCard_id(), Toast.LENGTH_SHORT).show();
+                isAlreadyJoin(dataModel);
+//                Intent intent = new Intent(getContext(), CheckRoomEligibility.class);
+//                intent.putExtra(getContext().getString(R.string.db_field_card_id), dataModel.getCard_id());
+//                intent.putExtra(getContext().getString(R.string.db_field_entry_fee) , dataModel.getEntry_fee() );
+//                getContext().startActivity(intent);
                 }
         });
-
-
-
         return convertView;
     }
+    private void isAlreadyJoin(PlayModel dataModel){
+        final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        Toast.makeText(mContext, "on click button", Toast.LENGTH_SHORT).show();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("new_card_room");
+
+//        String userId = reference.child("user_id").getKey();
+//        Toast.makeText(mContext, "" + userId, Toast.LENGTH_SHORT).show();
+        //DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    PlayModel playModel = (PlayModel) snapshot.getValue(PlayModel.class);
+                    Toast.makeText(mContext, "user" + snapshot.getChildren(), Toast.LENGTH_SHORT).show();
+
+//                    if(user.getUser_id().equals(mAuth.getCurrentUser().getUid())){
+//                        Toast.makeText(mContext, "Already Join", Toast.LENGTH_SHORT).show();
+//                    }else{
+//                        Toast.makeText(mContext, "Able to Join", Toast.LENGTH_SHORT).show();
+//                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
 
 
 }

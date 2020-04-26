@@ -9,10 +9,15 @@ public class UserProfile {
     private long total_kills;
     private long amount_won;
     private long curr_balance;
+    private String mobile;
+
+
+    public UserProfile() {
+    }
 
     public UserProfile(String name, String username,
                        String gamename, String user_id, String email_id,
-                       long total_kills, long amount_won, long curr_balance) {
+                       long total_kills, long amount_won, long curr_balance, String mobile) {
         this.name = name;
         this.username = username;
         this.gamename = gamename;
@@ -21,6 +26,7 @@ public class UserProfile {
         this.total_kills = total_kills;
         this.amount_won = amount_won;
         this.curr_balance = curr_balance;
+        this.mobile = mobile;
     }
 
     public String getName() {
@@ -87,6 +93,14 @@ public class UserProfile {
         this.curr_balance = curr_balance;
     }
 
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
     @Override
     public String toString() {
         return "UserProfile{" +
@@ -98,6 +112,7 @@ public class UserProfile {
                 ", total_kills=" + total_kills +
                 ", amount_won=" + amount_won +
                 ", curr_balance=" + curr_balance +
+                ", mobile='" + mobile + '\'' +
                 '}';
     }
 }

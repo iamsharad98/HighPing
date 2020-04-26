@@ -3,21 +3,26 @@ package com.bekaim.highping;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.graphics.PorterDuff;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
+import com.bekaim.highping.activities.UserProfileActivity;
 import com.bekaim.highping.fragments.OverPoweredFragment;
 import com.bekaim.highping.fragments.PlayFragment;
 import com.bekaim.highping.fragments.ResultFragment;
 import com.bekaim.highping.utils.SetupViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
-import com.roughike.bottombar.BottomBar;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    ViewPager mViewPager;
-    TabLayout tabLayout;
+    private ViewPager mViewPager;
+    private TabLayout tabLayout;
+    private ImageView ivProfile;
+    private Context mContext = MainActivity.this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tabLayout);
+        ivProfile = findViewById(R.id.profile);
+
+        ivProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
         setupViewPager(mViewPager);
     }
 

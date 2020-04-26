@@ -16,7 +16,7 @@ public class PlayModel {
     private String card_id;
     private String room_id;
     private String room_password;
-    private List<Spots> spots_left;
+    private List<Spots> joined_user;
 
     public PlayModel() {
     }
@@ -24,7 +24,7 @@ public class PlayModel {
     public PlayModel(String image_url, String match_count, String time_stamp, String win_prize,
                      String match_type, String amt_per_kill, String version,
                      String entry_fee, String map, String card_id, String room_id,
-                     String room_password, List<Spots> spots_left) {
+                     String room_password, List<Spots> joined_user) {
         this.image_url = image_url;
         this.match_count = match_count;
         this.time_stamp = time_stamp;
@@ -37,7 +37,7 @@ public class PlayModel {
         this.card_id = card_id;
         this.room_id = room_id;
         this.room_password = room_password;
-        this.spots_left = spots_left;
+        this.joined_user = joined_user;
     }
 
     public String getCard_id() {
@@ -136,12 +136,12 @@ public class PlayModel {
         this.map = map;
     }
 
-    public List<Spots> getSpots_left() {
-        return spots_left;
+    public List<Spots> getJoined_user() {
+        return joined_user;
     }
 
-    public void setSpots_left(List<Spots> spots_left) {
-        this.spots_left = spots_left;
+    public void setJoined_user(List<Spots> joined_user) {
+        this.joined_user = joined_user;
     }
 
     @Override
@@ -159,7 +159,7 @@ public class PlayModel {
                 ", card_id='" + card_id + '\'' +
                 ", room_id='" + room_id + '\'' +
                 ", room_password='" + room_password + '\'' +
-                ", spots_left=" + spots_left +
+                ", joined_user=" + joined_user +
                 '}';
     }
 }

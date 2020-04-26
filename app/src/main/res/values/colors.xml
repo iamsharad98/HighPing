@@ -14,14 +14,12 @@
     <color name="whatsapp_green_me">#E2FFC7</color>
     <color name="whatsapp_green_second_person">#FFFFFF</color>
     <color name="twitch_purple">#6441A4</color>
+
     <color name="main_head_title">#121212</color>
     <color name="main_second_title">#2E2D32</color>
     <color name="lower_tabs_color">#373737</color>
     <color name="ic_color_toolbar">#1E1E1E</color>
     <color name="textInputLayout">#96ffffff</color>
-
-
-
 
     <color name="light_red">#ff4f55</color>
     <color name="light_blue">#8a82ff</color>
