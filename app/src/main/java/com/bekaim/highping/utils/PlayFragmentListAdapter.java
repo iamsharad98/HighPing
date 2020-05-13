@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.bekaim.highping.R;
 import com.bekaim.highping.activities.CheckRoomEligibility;
 import com.bekaim.highping.activities.RoomActivity;
+import com.bekaim.highping.activities.ViewContestActivity;
+import com.bekaim.highping.models.JoinedUser;
 import com.bekaim.highping.models.PlayModel;
 import com.bekaim.highping.models.Spots;
 import com.bekaim.highping.models.UserProfile;
@@ -21,10 +23,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -37,6 +41,9 @@ public class PlayFragmentListAdapter extends ArrayAdapter<PlayModel> {
     private int mLayoutResource;
     private Context mContext;
     private ArrayList<PlayModel> dataSet;
+    private FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+
+
 
 
     public PlayFragmentListAdapter(Context context, int resource, ArrayList<PlayModel> data) {
@@ -124,17 +131,61 @@ public class PlayFragmentListAdapter extends ArrayAdapter<PlayModel> {
         holder.join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(mContext, "" + dataModel.getCard_id(), Toast.LENGTH_SHORT).show();
-                isAlreadyJoin(dataModel);
-//                Intent intent = new Intent(getContext(), CheckRoomEligibility.class);
-//                intent.putExtra(getContext().getString(R.string.db_field_card_id), dataModel.getCard_id());
-//                intent.putExtra(getContext().getString(R.string.db_field_entry_fee) , dataModel.getEntry_fee() );
-//                getContext().startActivity(intent);
-                }
+
+                Query query = FirebaseDatabase.getInstance().getReference("joined_user").orderByChild("user_id");
+                final String currentUser = mUser.getUid();
+
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            JoinedUser user = snapshot.getValue(JoinedUser.class);
+
+                            assert user != null;
+                            String cardls = user.getCard_id().trim();
+                            String cardId = dataModel.getCard_id().trim();
+
+                            if(user.getUser_id().equals(currentUser)) {
+
+                                if(cardls.equals(cardId)){
+                                    Intent intent = new Intent(getContext(), ViewContestActivity.class);
+                                    intent.putExtra(getContext().getString(R.string.db_field_card_id), dataModel.getCard_id());
+                                    intent.putExtra(getContext().getString(R.string.db_field_entry_fee), dataModel.getEntry_fee());
+                                    getContext().startActivity(intent);
+                                }else{
+                                    Intent intent = new Intent(getContext(), CheckRoomEligibility.class);
+                                    intent.putExtra(getContext().getString(R.string.db_field_card_id), dataModel.getCard_id());
+                                    intent.putExtra(getContext().getString(R.string.db_field_entry_fee), dataModel.getEntry_fee());
+                                    getContext().startActivity(intent);
+                                }
+                            }else{
+//                                    final DatabaseReference joinRef = FirebaseDatabase.getInstance().getReference("joined_user")
+//                                            .child(dataModel.getCard_id())
+//                                            .child(mUser.getUid());
+//                                    joinRef.child("id").setValue(mUser.getUid());
+//
+                                Intent intent = new Intent(getContext(), CheckRoomEligibility.class);
+                                intent.putExtra(getContext().getString(R.string.db_field_card_id), dataModel.getCard_id());
+                                intent.putExtra(getContext().getString(R.string.db_field_entry_fee), dataModel.getEntry_fee());
+                                getContext().startActivity(intent);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+
         });
         return convertView;
     }
-    private void isAlreadyJoin(PlayModel dataModel){
+
+    //later I will add a list of cards in this model so that I traverse through all
+
+    private void isJoin(PlayModel dataModel){
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
         Toast.makeText(mContext, "on click button", Toast.LENGTH_SHORT).show();
 

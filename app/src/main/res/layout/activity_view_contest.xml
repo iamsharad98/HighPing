@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ResultFragment"
+    android:background="@color/bg_contest">
+<!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+<!--        android:id="@+id/pullToRefresh"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp">-->
+<!--        -->
+<!--        -->
+<!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+
+    <ImageView
+        android:id="@+id/wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/pubg_sample_wallpaper"
+        />
+    <RelativeLayout
+        android:id="@+id/rel_id_pass_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wallpaper"
+        android:layout_margin="10dp">
+        <TextView
+            android:id="@+id/tv_matchroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Match Room Details"
+            android:textColor="@color/cute_black"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
+        <RelativeLayout
+            android:id="@+id/tv_rel_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_matchroom"
+            android:layout_margin="10dp">
+            <TextView
+                android:id="@+id/tv_roomId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Room ID:  "
+                android:textColor="@color/grey"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/val_room_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="65324564"
+                android:textColor="@color/grey"
+                android:layout_toRightOf="@+id/tv_roomId"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/tv_rel_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_rel_id"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:id="@+id/tv_roomPass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Room Password:  "
+                android:textColor="@color/grey"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/val_room_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12345"
+                android:textColor="@color/grey"
+                android:layout_toRightOf="@+id/tv_roomPass"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rel_match_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rel_id_pass_details"
+        android:layout_margin="10dp"
+        >
+        <RelativeLayout
+            android:id="@+id/rel_match_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_match_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Match #"
+                android:textColor="@color/whatsapp_green"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/val_match_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_match_count"
+                android:text="88"
+                android:textColor="@color/whatsapp_green"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rel_match_num"
+            android:padding="5dp">
+
+            <RelativeLayout
+                android:id="@+id/rel_match_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/grey_border_bottom"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type:  "/>
+                <TextView
+                    android:id="@+id/val_match_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_type"
+                    android:text="SQUAD"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rel_match_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/rel_match_type"
+                android:background="@drawable/grey_border_bottom"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/tv_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Version:  "/>
+                <TextView
+                    android:id="@+id/val_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_version"
+                    android:text="1.0"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rel_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/rel_match_version"
+                android:background="@drawable/grey_border_bottom"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/tv_map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Map:  "/>
+                <TextView
+                    android:id="@+id/val_map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_map"
+                    android:text="ERANGLE"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relLayout1"
+            android:padding="5dp">
+
+            <RelativeLayout
+                android:id="@+id/rel_entry_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/grey_border_bottom"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/tv_entry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Entry Fee:  "/>
+                <TextView
+                    android:id="@+id/val_entry_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_entry"
+                    android:text="FREE"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rel_per_kill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/rel_entry_fee"
+                android:background="@drawable/grey_border_bottom"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/tv_per_kill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Per Kill:  "/>
+                <TextView
+                    android:id="@+id/val_per_kill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_per_kill"
+                    android:text="20rs"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rel_win_prize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/rel_per_kill"
+                android:background="@drawable/grey_border_bottom"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/tv_prize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Win Prize: "/>
+                <TextView
+                    android:id="@+id/val_win_prize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_prize"
+                    android:text="100rs"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relLayout2"
+            android:padding="5dp">
+
+            <RelativeLayout
+                android:id="@+id/rel_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/grey_border_bottom"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/tv_schedule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Match Schedule:  "/>
+                <TextView
+                    android:id="@+id/val_schedule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_schedule"
+                    android:text="11-03-2020 at 10:00 AM"/>
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+</RelativeLayout>

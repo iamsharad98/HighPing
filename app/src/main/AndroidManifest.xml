@@ -15,7 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.CheckRoomEligibility"></activity>
+        <activity android:name=".activities.ViewContestActivity"></activity>
+        <activity android:name=".activities.ViewResultActivity" />
+        <activity android:name=".activities.RoomActivity" />
+        <activity android:name=".activities.UserProfileActivity" />
+        <activity android:name=".activities.CheckRoomEligibility" />
         <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +39,7 @@
             android:name=".activities.RegisterActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

@@ -71,12 +71,14 @@ public class CheckRoomEligibility extends AppCompatActivity {
             userId = mAuth.getCurrentUser().getUid();
         }
 
+        Toast.makeText(mContext, "UID " + FirebaseAuth.getInstance().getCurrentUser().getUid(), Toast.LENGTH_SHORT).show();
+
         //Get Intent Extra
         Intent intent = getIntent();
         entryFee = intent.getStringExtra(mContext.getString(R.string.db_field_entry_fee));
         cardId = intent.getStringExtra(mContext.getString(R.string.db_field_card_id));
         //setProfileWidgets();
-        isAlreadyJoin();
+        //isAlreadyJoin();
 
         entry_fee.setText(entryFee);
     }
