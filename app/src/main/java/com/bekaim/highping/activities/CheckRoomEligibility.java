@@ -71,26 +71,15 @@ public class CheckRoomEligibility extends AppCompatActivity {
             userId = mAuth.getCurrentUser().getUid();
         }
 
-        Toast.makeText(mContext, "UID " + FirebaseAuth.getInstance().getCurrentUser().getUid(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(mContext, "UID " + FirebaseAuth.getInstance().getCurrentUser().getUid(), Toast.LENGTH_SHORT).show();
 
         //Get Intent Extra
         Intent intent = getIntent();
         entryFee = intent.getStringExtra(mContext.getString(R.string.db_field_entry_fee));
         cardId = intent.getStringExtra(mContext.getString(R.string.db_field_card_id));
-        //setProfileWidgets();
-        //isAlreadyJoin();
+        setProfileWidgets();
 
         entry_fee.setText(entryFee);
-    }
-
-    private void isAlreadyJoin(){
-        final FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("new_card_room").child(cardId).child("joined_user");
-
-        String userId = reference.child("user_id").getKey();
-        Toast.makeText(mContext, "" + userId, Toast.LENGTH_SHORT).show();
-
     }
 
 
@@ -104,8 +93,10 @@ public class CheckRoomEligibility extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     UserProfile user = (UserProfile) snapshot.getValue(UserProfile.class);
+//                    Toast.makeText(mContext, "balance " + user.getCurr_balance(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mContext, "userId " + mAuth.getCurrentUser().getUid(), Toast.LENGTH_SHORT).show();
                     if(user.getUser_id().equals(mAuth.getCurrentUser().getUid())){
-                        final long balance1 = user.getCurr_balance();
+                        final long balance1 = Long.parseLong(user.getCurr_balance());
                         curr_balance.setText(String.valueOf(balance1));
 
                         if(entryFee.equals("Free") || balance1>=Integer.parseInt(entryFee)){
@@ -124,11 +115,13 @@ public class CheckRoomEligibility extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if(entryFee.equals("Free") ) {
-                                    Toast.makeText(mContext, "Go to card activity", Toast.LENGTH_SHORT).show();
                                     addUserToRoom();
-//                                    Toast.makeText(mContext, "" + cardId, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(CheckRoomEligibility.this, RoomActivity.class);
+                                    Intent intent = new Intent(CheckRoomEligibility.this, ViewContestActivity.class);
+                                    intent.putExtra(getString(R.string.db_field_card_id), cardId);
+                                    intent.putExtra(getString(R.string.db_field_entry_fee), entryFee);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
+//                                    finish();
                                 }else if(bal>=Integer.parseInt(entryFee)){
                                     updateBalance(balance1);
                                 }
@@ -149,19 +142,29 @@ public class CheckRoomEligibility extends AppCompatActivity {
                 .child(mAuth.getCurrentUser().getUid());
 
         HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("curr_balance", balance1-Integer.parseInt(entryFee));
+        String str = String.valueOf(balance1-Integer.parseInt(entryFee));
+        hashMap.put("curr_balance", str);
         reference.updateChildren(hashMap);
         addUserToRoom();
 //        Toast.makeText(mContext, "" + cardId, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(CheckRoomEligibility.this, RoomActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+//        finish();
     }
     private void addUserToRoom(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("new_room_card")
-                .child(cardId).child("joined_user");
 
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("user_id", mAuth.getCurrentUser().getUid());
-        reference.updateChildren(hashMap);
+        final DatabaseReference joinRef = FirebaseDatabase.getInstance().getReference("joined_user")
+                .child(mAuth.getCurrentUser().getUid());
+        joinRef.child("user_id").setValue(mAuth.getCurrentUser().getUid());
+        joinRef.child("card_id").setValue(cardId);
+
+
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("new_room_card")
+//                .child(cardId).child("joined_user");
+//
+//        HashMap<String, Object> hashMap = new HashMap<>();
+//        hashMap.put("user_id", mAuth.getCurrentUser().getUid());
+//        reference.updateChildren(hashMap);
     }
 }

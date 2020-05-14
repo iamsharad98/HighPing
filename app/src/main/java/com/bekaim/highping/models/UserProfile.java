@@ -6,18 +6,17 @@ public class UserProfile {
     private String gamename;
     private String user_id;
     private String email_id;
-    private long total_kills;
-    private long amount_won;
-    private long curr_balance;
+    private String total_kills;
+    private String amount_won;
+    private String curr_balance;
     private String mobile;
 
 
     public UserProfile() {
     }
 
-    public UserProfile(String name, String username,
-                       String gamename, String user_id, String email_id,
-                       long total_kills, long amount_won, long curr_balance, String mobile) {
+    public UserProfile(String name, String username, String gamename, String user_id,
+                       String email_id, String total_kills, String amount_won, String curr_balance, String mobile) {
         this.name = name;
         this.username = username;
         this.gamename = gamename;
@@ -69,27 +68,27 @@ public class UserProfile {
         this.email_id = email_id;
     }
 
-    public long getTotal_kills() {
+    public String getTotal_kills() {
         return total_kills;
     }
 
-    public void setTotal_kills(long total_kills) {
+    public void setTotal_kills(String total_kills) {
         this.total_kills = total_kills;
     }
 
-    public long getAmount_won() {
+    public String getAmount_won() {
         return amount_won;
     }
 
-    public void setAmount_won(long amount_won) {
+    public void setAmount_won(String amount_won) {
         this.amount_won = amount_won;
     }
 
-    public long getCurr_balance() {
+    public String getCurr_balance() {
         return curr_balance;
     }
 
-    public void setCurr_balance(long curr_balance) {
+    public void setCurr_balance(String curr_balance) {
         this.curr_balance = curr_balance;
     }
 
@@ -109,10 +108,11 @@ public class UserProfile {
                 ", gamename='" + gamename + '\'' +
                 ", user_id='" + user_id + '\'' +
                 ", email_id='" + email_id + '\'' +
-                ", total_kills=" + total_kills +
-                ", amount_won=" + amount_won +
-                ", curr_balance=" + curr_balance +
+                ", total_kills='" + total_kills + '\'' +
+                ", amount_won='" + amount_won + '\'' +
+                ", curr_balance='" + curr_balance + '\'' +
                 ", mobile='" + mobile + '\'' +
                 '}';
     }
 }
+

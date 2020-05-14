@@ -138,6 +138,7 @@ public class PlayFragmentListAdapter extends ArrayAdapter<PlayModel> {
                 query.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        boolean check = false;
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                             JoinedUser user = snapshot.getValue(JoinedUser.class);
 
@@ -148,28 +149,26 @@ public class PlayFragmentListAdapter extends ArrayAdapter<PlayModel> {
                             if(user.getUser_id().equals(currentUser)) {
 
                                 if(cardls.equals(cardId)){
-                                    Intent intent = new Intent(getContext(), ViewContestActivity.class);
-                                    intent.putExtra(getContext().getString(R.string.db_field_card_id), dataModel.getCard_id());
-                                    intent.putExtra(getContext().getString(R.string.db_field_entry_fee), dataModel.getEntry_fee());
-                                    getContext().startActivity(intent);
-                                }else{
-                                    Intent intent = new Intent(getContext(), CheckRoomEligibility.class);
-                                    intent.putExtra(getContext().getString(R.string.db_field_card_id), dataModel.getCard_id());
-                                    intent.putExtra(getContext().getString(R.string.db_field_entry_fee), dataModel.getEntry_fee());
-                                    getContext().startActivity(intent);
+                                    check = true;
+//                                    return;
                                 }
-                            }else{
-//                                    final DatabaseReference joinRef = FirebaseDatabase.getInstance().getReference("joined_user")
-//                                            .child(dataModel.getCard_id())
-//                                            .child(mUser.getUid());
-//                                    joinRef.child("id").setValue(mUser.getUid());
-//
-                                Intent intent = new Intent(getContext(), CheckRoomEligibility.class);
-                                intent.putExtra(getContext().getString(R.string.db_field_card_id), dataModel.getCard_id());
-                                intent.putExtra(getContext().getString(R.string.db_field_entry_fee), dataModel.getEntry_fee());
-                                getContext().startActivity(intent);
+
                             }
                         }
+//                        Toast.makeText(mContext, "user ID  " + FirebaseAuth.getInstance().getCurrentUser().getUid(), Toast.LENGTH_SHORT).show();
+
+                        if (check){
+                            Intent intent = new Intent(getContext(), ViewContestActivity.class);
+                            intent.putExtra(getContext().getString(R.string.db_field_card_id), dataModel.getCard_id());
+                            intent.putExtra(getContext().getString(R.string.db_field_entry_fee), dataModel.getEntry_fee());
+                            getContext().startActivity(intent);
+                        }else{
+                            Intent intent = new Intent(getContext(), CheckRoomEligibility.class);
+                            intent.putExtra(getContext().getString(R.string.db_field_card_id), dataModel.getCard_id());
+                            intent.putExtra(getContext().getString(R.string.db_field_entry_fee), dataModel.getEntry_fee());
+                            getContext().startActivity(intent);
+                        }
+
                     }
 
                     @Override

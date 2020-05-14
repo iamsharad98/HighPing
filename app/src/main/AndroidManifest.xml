@@ -15,7 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.ViewContestActivity"></activity>
+        <activity android:name=".activities.HowToJoin"></activity>
+        <activity android:name=".activities.PrivacyPolicyActivity" />
+        <activity android:name=".activities.AboutUsActivity" />
+        <activity android:name=".activities.ViewContestActivity" />
         <activity android:name=".activities.ViewResultActivity" />
         <activity android:name=".activities.RoomActivity" />
         <activity android:name=".activities.UserProfileActivity" />

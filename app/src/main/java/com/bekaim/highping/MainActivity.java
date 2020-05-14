@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private TabLayout tabLayout;
     private ImageView ivProfile;
+    private ImageView invite;
     private Context mContext = MainActivity.this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +32,28 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tabLayout);
         ivProfile = findViewById(R.id.profile);
+        invite = findViewById(R.id.ic_share);
 
         ivProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, UserProfileActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        invite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBody = "Hey, \n\nHighPing is a gaming tournament app. We can play with our friends\n"
+                        + "and earn money using this app. \nYou can download this app from playstore.\n"
+                        + "Get it free at \nhttps://play.google.com/store/apps/";
+                String shareSub = "HighPing";
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareSub);
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, "Share using"));
             }
         });
 

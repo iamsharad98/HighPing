@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bekaim.highping.MainActivity;
 import com.bekaim.highping.R;
 import com.bekaim.highping.models.PlayModel;
 import com.bekaim.highping.models.Spots;
@@ -41,6 +43,7 @@ public class ViewContestActivity extends AppCompatActivity {
     private TextView perKill;
     private TextView winPrize;
     private TextView matchTime;
+    private ImageView back;
 
     private String intentEntryFee;
     private String cardId;
@@ -59,6 +62,17 @@ public class ViewContestActivity extends AppCompatActivity {
         perKill = findViewById(R.id.val_per_kill);
         winPrize = findViewById(R.id.val_win_prize);
         matchTime = findViewById(R.id.val_schedule);
+        back = findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewContestActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
 
         Intent intent = getIntent();
         intentEntryFee = intent.getStringExtra(getApplicationContext().getString(R.string.db_field_entry_fee));
@@ -89,7 +103,6 @@ public class ViewContestActivity extends AppCompatActivity {
                     playModel.setCard_id(objectMap.get(getString(R.string.db_field_card_id)).toString());
 
                     if(playModel.getCard_id().equals(cardId)){
-                        Toast.makeText(ViewContestActivity.this, "map " + playModel.getMap(), Toast.LENGTH_SHORT).show();
                         roomId.setText(playModel.getRoom_id());
                         roomPass.setText(playModel.getRoom_password());
                         perKill.setText(playModel.getAmt_per_kill());

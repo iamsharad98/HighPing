@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bekaim.highping.R;
 import com.bekaim.highping.activities.ViewResultActivity;
 import com.bekaim.highping.models.ResultCard;
+import com.bekaim.highping.models.ResultPlayerList;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;

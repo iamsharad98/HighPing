@@ -121,10 +121,7 @@ public class ResultFragment extends Fragment {
                         }
                     });
 
-//                    ArrayList<PlayModel> model = new ArrayList<PlayModel>();
-//                    for(int i = 0; i < playModels.size(); i++){
-//                        model.add(playModels.get(i));
-//                    }
+
                     adapter = new ResultFragmentAdapter(getActivity(),
                             R.layout.snippet_result_room,
                             resultModels);

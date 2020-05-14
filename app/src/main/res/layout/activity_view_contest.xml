@@ -5,19 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ResultFragment"
     android:background="@color/bg_contest">
-<!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
-<!--        android:id="@+id/pullToRefresh"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="10dp">-->
-<!--        -->
-<!--        -->
-<!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rel"
+        >
+        <include layout="@layout/snippet_view_result_bar"/>
+    </RelativeLayout>
     <ImageView
         android:id="@+id/wallpaper"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:layout_below="@+id/rel"
         android:background="@drawable/pubg_sample_wallpaper"
         />
     <RelativeLayout
